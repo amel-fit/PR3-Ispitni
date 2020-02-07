@@ -38,10 +38,11 @@ namespace cSharpIntroWinForms.P11
                     ReportParameterCollection rpc = new ReportParameterCollection();
                     rpc.Add(new ReportParameter("ImePrezime", $"{korisnik.Ime} {korisnik.Prezime}"));
                     rpc.Add(new ReportParameter("Indeks", korisnik.KorisnickoIme));
+                    // Dodaj parametre u report
+                    reportViewer1.LocalReport.SetParameters(rpc);
 
-
-                    // Lista objekata
-                    List<object> list = new List<object>();
+                // Lista objekata
+                List<object> list = new List<object>();
                     int i = 0; // pomocni brojac
 
                     // Listamo sve predmete
@@ -63,8 +64,10 @@ namespace cSharpIntroWinForms.P11
                         {
                             Rb = i++,
                             Naziv = polozeni.Naziv,
-                            Ocjena = podaci?.ocjena.ToString() != null ? podaci?.ocjena.ToString() : "Nije polozeno",
-                            Datum = podaci?.datum.ToString() != null ? podaci?.datum.ToString() : "Nije polozeno"
+                            
+                            // (.?) podaci?.ocjena skraceno provjerava da li su podaci null, isto je kao if(podaci!=null) podaci.ocjena
+                            Ocjena = podaci?.ocjena.ToString() ?? "Nije polozeno", //  ?? ako nije null vrati lijevu stranu, ako je null vrati desnu stranu, tj. if else
+                            Datum = podaci?.datum.ToString() ?? "Nije polozeno"
                         });
 
                     }
@@ -74,7 +77,6 @@ namespace cSharpIntroWinForms.P11
                     rds.Name = "DataSet1";
                     rds.Value = list;
 
-                    reportViewer1.LocalReport.SetParameters(rpc);
                     reportViewer1.LocalReport.DataSources.Add(rds);
 
                     this.reportViewer1.RefreshReport();
