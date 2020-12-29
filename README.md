@@ -4,4 +4,5 @@
 
 # Contributors
 
-[Nermin Pamuk](https://github.com/webork)  
+* [Nermin Pamuk](https://github.com/webork)
+* Enver Šejtanić
