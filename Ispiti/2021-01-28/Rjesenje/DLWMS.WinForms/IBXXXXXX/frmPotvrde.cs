@@ -87,6 +87,10 @@ namespace DLWMS.WinForms.IBXXXXXX
                     brojPotvrda = 0;
                 }
             }
+            else
+            {
+                brojPotvrda = 0;
+            }
         }
 
         private void btnIzbrisi_Click(object sender, EventArgs e)
