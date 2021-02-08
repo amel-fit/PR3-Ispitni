@@ -47,6 +47,7 @@
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.btnPrintaj = new System.Windows.Forms.Button();
             this.btnPotvrde = new System.Windows.Forms.Button();
+            this.lblBrojStudenata = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStudenti)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
@@ -183,10 +184,11 @@
             // lblProsjek
             // 
             this.lblProsjek.AutoSize = true;
-            this.lblProsjek.Location = new System.Drawing.Point(12, 332);
+            this.lblProsjek.Location = new System.Drawing.Point(12, 333);
             this.lblProsjek.Name = "lblProsjek";
-            this.lblProsjek.Size = new System.Drawing.Size(0, 13);
+            this.lblProsjek.Size = new System.Drawing.Size(77, 13);
             this.lblProsjek.TabIndex = 8;
+            this.lblProsjek.Text = "Prosjek ocjena";
             // 
             // errorProvider1
             // 
@@ -194,7 +196,7 @@
             // 
             // btnPrintaj
             // 
-            this.btnPrintaj.Location = new System.Drawing.Point(618, 327);
+            this.btnPrintaj.Location = new System.Drawing.Point(618, 323);
             this.btnPrintaj.Name = "btnPrintaj";
             this.btnPrintaj.Size = new System.Drawing.Size(75, 23);
             this.btnPrintaj.TabIndex = 9;
@@ -204,7 +206,7 @@
             // 
             // btnPotvrde
             // 
-            this.btnPotvrde.Location = new System.Drawing.Point(526, 327);
+            this.btnPotvrde.Location = new System.Drawing.Point(524, 323);
             this.btnPotvrde.Name = "btnPotvrde";
             this.btnPotvrde.Size = new System.Drawing.Size(75, 23);
             this.btnPotvrde.TabIndex = 10;
@@ -212,11 +214,21 @@
             this.btnPotvrde.UseVisualStyleBackColor = true;
             this.btnPotvrde.Click += new System.EventHandler(this.btnPotvrde_Click);
             // 
+            // lblBrojStudenata
+            // 
+            this.lblBrojStudenata.AutoSize = true;
+            this.lblBrojStudenata.Location = new System.Drawing.Point(12, 316);
+            this.lblBrojStudenata.Name = "lblBrojStudenata";
+            this.lblBrojStudenata.Size = new System.Drawing.Size(75, 13);
+            this.lblBrojStudenata.TabIndex = 11;
+            this.lblBrojStudenata.Text = "Broj studenata";
+            // 
             // frmStudenti
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(706, 361);
+            this.ClientSize = new System.Drawing.Size(706, 357);
+            this.Controls.Add(this.lblBrojStudenata);
             this.Controls.Add(this.btnPotvrde);
             this.Controls.Add(this.btnPrintaj);
             this.Controls.Add(this.lblProsjek);
@@ -258,5 +270,6 @@
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.Button btnPotvrde;
         private System.Windows.Forms.Button btnPrintaj;
+        private System.Windows.Forms.Label lblBrojStudenata;
     }
 }
