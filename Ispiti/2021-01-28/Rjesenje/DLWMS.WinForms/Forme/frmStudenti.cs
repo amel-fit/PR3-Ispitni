@@ -61,6 +61,7 @@ namespace DLWMS.WinForms.Forme
             (filterAktivnost=="svi" || x.Aktivan == filterAktivnostParsed)
             ).ToList();
             izracunajProsjek(listaStudenata);
+            lblBrojStudenata.Text = $"Broj prikazanih studenata:{listaStudenata.Count.ToString()}";
             dgvStudenti.DataSource = null;
             dgvStudenti.DataSource = listaStudenata;
         }
@@ -87,7 +88,7 @@ namespace DLWMS.WinForms.Forme
             }
             if (ukupniProsjek > 0)
                 ukupniProsjek /= brojKorisnikaSaOcjenama;
-            lblProsjek.Text = $"Prosjek ocjena prikazanih korisnika je {ukupniProsjek}";
+            lblProsjek.Text = $"Prosjek ocjena prikazanih studenata je {ukupniProsjek}";
         }
 
         private void PrikaziFormu(Form form)

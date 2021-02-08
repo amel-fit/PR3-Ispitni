@@ -119,16 +119,17 @@
             // lblBrojPotvrda
             // 
             this.lblBrojPotvrda.AutoSize = true;
-            this.lblBrojPotvrda.Location = new System.Drawing.Point(12, 236);
+            this.lblBrojPotvrda.Location = new System.Drawing.Point(12, 227);
             this.lblBrojPotvrda.Name = "lblBrojPotvrda";
-            this.lblBrojPotvrda.Size = new System.Drawing.Size(0, 13);
+            this.lblBrojPotvrda.Size = new System.Drawing.Size(65, 13);
             this.lblBrojPotvrda.TabIndex = 5;
+            this.lblBrojPotvrda.Text = "Broj Potvrda";
             // 
             // frmPotvrde
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(600, 267);
+            this.ClientSize = new System.Drawing.Size(600, 255);
             this.Controls.Add(this.lblBrojPotvrda);
             this.Controls.Add(this.btnFajl);
             this.Controls.Add(this.btnIzbrisi);

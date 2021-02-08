@@ -100,7 +100,6 @@ namespace DLWMS.WinForms.IBXXXXXX
                 MessageBox.Show("Nema potvrda za izbrisat");
                 return;
             }
-            //kreira formu na lokaciji gdje se nalazi kursor
             var frm = new frmPotvrdiBrisanje();
             if (frm.ShowDialog() == DialogResult.OK)
             {
