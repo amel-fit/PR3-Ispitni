@@ -115,6 +115,7 @@
             this.btnFajl.TabIndex = 4;
             this.btnFajl.Text = "Upisi u fajl";
             this.btnFajl.UseVisualStyleBackColor = true;
+            this.btnFajl.Click += new System.EventHandler(this.btnFajl_Click);
             // 
             // lblBrojPotvrda
             // 

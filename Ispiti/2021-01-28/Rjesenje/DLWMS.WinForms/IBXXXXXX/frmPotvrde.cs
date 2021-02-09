@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -28,47 +29,43 @@ namespace DLWMS.WinForms.IBXXXXXX
         private void frmPotvrde_Load(object sender, EventArgs e)
         {
             dgvPotvrde.AutoGenerateColumns = false;
-            //Uzimamo random studenta iz baze u ovom slucaju student sa Id 1 u bazi
-            student = _baza.Studenti.Find(1);
             ucitajPodatke();
         }
 
         private void ucitajPodatke()
         {
-            dgvPotvrde.DataSource = null;
             potvrde = _baza.Potvrde.ToList();
-            dgvPotvrde.DataSource = potvrde;
             lblBrojPotvrda.Text = $"Broj prikazanih potvrda: {potvrde.Count}";
+            dgvPotvrde.DataSource = null;
+            dgvPotvrde.DataSource = potvrde;
             
         }
 
-        private void btnGenerisi_Click(object sender, EventArgs e)
+        private async void btnGenerisi_Click(object sender, EventArgs e)
         {
             if(brojPotvrda==0)
             {
                 MessageBox.Show("Unesite koliko zelize potvrda generisati");
                 return;
             }
-            var generisiPotvrde = Task.Run(() =>
+            Action action = () => ucitajPodatke();
+            await Task.Run(() =>
             {
-                for(int i=0;i<brojPotvrda;i++)
+                for (int i = 0; i < brojPotvrda; i++)
                 {
+                    Random rand = new Random();
+                    int toSkip = rand.Next(1, _baza.Studenti.Count()-1);
                     var potvrda = new Potvrda()
                     {
-                        Student = student,
+                        Student = _baza.Studenti.ToList().ElementAt(toSkip),//uzima random studenta iz baze
                         Datum = DateTime.Now.ToString(),
-                        Izdata = true,
+                        Izdata = rand.NextDouble() > 0.5, //generise random bool vrijednost
                         Svrha = "Stipendija"
                     };
                     _baza.Potvrde.Add(potvrda);
                 }
                 _baza.SaveChanges();
-            });
-            var awaiter = generisiPotvrde.GetAwaiter();
-            awaiter.OnCompleted(() =>
-            {
-                MessageBox.Show("Uspjesno dodane potvrde");
-                ucitajPodatke();
+                BeginInvoke(action);
             });
         }
 
@@ -93,30 +90,44 @@ namespace DLWMS.WinForms.IBXXXXXX
             }
         }
 
-        private void btnIzbrisi_Click(object sender, EventArgs e)
+        private async void btnIzbrisi_Click(object sender, EventArgs e)
         {
             if(potvrde.Count==0)
             {
                 MessageBox.Show("Nema potvrda za izbrisat");
                 return;
             }
+
             var frm = new frmPotvrdiBrisanje();
             if (frm.ShowDialog() == DialogResult.OK)
             {
-                var izbrisiPotvrde = Task.Run(() =>
+                Action action = () => ucitajPodatke();
+                await Task.Run(() =>
                 {
                     _baza.Potvrde.RemoveRange(_baza.Potvrde);// RemoveRange brise sve elemente prosljedjenog DB seta
                     _baza.SaveChanges();
-                });
-                var awaiter = izbrisiPotvrde.GetAwaiter();
-                awaiter.OnCompleted(() =>
-                {
-                    MessageBox.Show("Uspjesno izbrisane potvrde");
-                    ucitajPodatke();
+                    BeginInvoke(action);
                 });
             }
             else
                 return;
+        }
+        //Primjer funkcije postoji u FileStructures delimiterDemo
+        public static void SaveCSV(string putanja) 
+        {
+            using (StreamWriter sw = File.AppendText(putanja))
+            {
+                foreach (var potvrda in DLWMSdb.Baza.Potvrde)
+                {
+                    sw.WriteLine(potvrda.Id + "," + potvrda.Student + "," + potvrda.Svrha + "," + potvrda.Datum + "," + potvrda.Izdata);
+                }
+
+                sw.Close();
+            }
+        }
+        private void btnFajl_Click(object sender, EventArgs e)
+        {
+            SaveCSV(@"Potvrde.csv");
         }
     }
 }
