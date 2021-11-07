@@ -68,27 +68,7 @@ namespace DLWMS.WinForms.Forme
 
         private void izracunajProsjek(List<Student> studenti)
         {
-            double ukupniProsjek = 0;
-            int brojKorisnikaSaOcjenama=0;
-            foreach(var s in studenti)
-            {
-                if (s.StudentiPredmeti.Count > 0)
-                {
-                    double prosjek = s.StudentiPredmeti.Average(x => x.Ocjena);
-                    if (prosjek == 0)
-                        continue;
-                    else
-                    {
-                        ukupniProsjek += prosjek;
-                        brojKorisnikaSaOcjenama++;
-                    }
-                }
-                else
-                    continue;
-            }
-            if (ukupniProsjek > 0)
-                ukupniProsjek /= brojKorisnikaSaOcjenama;
-            lblProsjek.Text = $"Prosjek ocjena prikazanih studenata je {ukupniProsjek}";
+            lblProsjek.Text = $"Prosjek ocjena prikazanih studenata je {studenti.Where(student => student.StudentiPredmeti.Count > 0).Average(x => x.StudentiPredmeti.Average(x1 => x1.Ocjena))}";
         }
 
         private void PrikaziFormu(Form form)
