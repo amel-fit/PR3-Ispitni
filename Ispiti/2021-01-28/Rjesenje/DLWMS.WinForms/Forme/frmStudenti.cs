@@ -68,7 +68,7 @@ namespace DLWMS.WinForms.Forme
 
         private void izracunajProsjek(List<Student> studenti)
         {
-            lblProsjek.Text = $"{studenti.Where(student => student.StudentiPredmeti.Count > 0).Average(x => x.StudentiPredmeti.Average(x1 => x1.Ocjena))}";
+            lblProsjek.Text = $"Prosjek ocjena prikazanih studenata je {studenti.Where(student => student.StudentiPredmeti.Count > 0).Average(x => x.StudentiPredmeti.Average(x1 => x1.Ocjena))}";
         }
 
         private void PrikaziFormu(Form form)
