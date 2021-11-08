@@ -68,7 +68,11 @@ namespace DLWMS.WinForms.Forme
 
         private void izracunajProsjek(List<Student> studenti)
         {
-            lblProsjek.Text = $"Prosjek ocjena prikazanih studenata je {studenti.Where(student => student.StudentiPredmeti.Count > 0).Average(x => x.StudentiPredmeti.Average(x1 => x1.Ocjena))}";
+            var studentiSaOcjenama = studenti.Where(student => student.StudentiPredmeti.Count > 0);
+            var prosjekSvihOcjena = studentiSaOcjenama.Average(student => (double?)student.StudentiPredmeti.Average(predmet => predmet.Ocjena));
+           
+            // koristimo GetValueOrDefault da se ispise vrijednost 0 u labeli, umjesto da bude prazna u slucaju da je prosjekSvihOcjena null.
+            lblProsjek.Text = $"Prosjek ocjena prikazanih studenata je {prosjekSvihOcjena.GetValueOrDefault()}";
         }
 
         private void PrikaziFormu(Form form)
