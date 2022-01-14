@@ -30,12 +30,22 @@
         {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.rptViewer = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.dsKorisnici = new cSharpIntroWinForms.IB190073.dsKorisnici();
             this.tblKorisniciBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.dsKorisnici)).BeginInit();
+            this.dsKorisnici = new cSharpIntroWinForms.IB190073.dsKorisnici();
+            this.rptViewer = new Microsoft.Reporting.WinForms.ReportViewer();
             ((System.ComponentModel.ISupportInitialize)(this.tblKorisniciBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsKorisnici)).BeginInit();
             this.SuspendLayout();
+            // 
+            // tblKorisniciBindingSource
+            // 
+            this.tblKorisniciBindingSource.DataMember = "tblKorisnici";
+            this.tblKorisniciBindingSource.DataSource = this.dsKorisnici;
+            // 
+            // dsKorisnici
+            // 
+            this.dsKorisnici.DataSetName = "dsKorisnici";
+            this.dsKorisnici.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // rptViewer
             // 
@@ -50,16 +60,6 @@
             this.rptViewer.Size = new System.Drawing.Size(800, 450);
             this.rptViewer.TabIndex = 0;
             // 
-            // dsKorisnici
-            // 
-            this.dsKorisnici.DataSetName = "dsKorisnici";
-            this.dsKorisnici.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // tblKorisniciBindingSource
-            // 
-            this.tblKorisniciBindingSource.DataMember = "tblKorisnici";
-            this.tblKorisniciBindingSource.DataSource = this.dsKorisnici;
-            // 
             // frmIzvjestaj
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -67,10 +67,9 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.rptViewer);
             this.Name = "frmIzvjestaj";
-            this.Text = "frmIzvjestaj";
             this.Load += new System.EventHandler(this.frmIzvjestaj_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dsKorisnici)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblKorisniciBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsKorisnici)).EndInit();
             this.ResumeLayout(false);
 
         }

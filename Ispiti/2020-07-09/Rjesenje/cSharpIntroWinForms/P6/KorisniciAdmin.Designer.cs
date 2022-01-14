@@ -180,6 +180,7 @@
             this.lblSuma.Size = new System.Drawing.Size(240, 23);
             this.lblSuma.TabIndex = 9;
             this.lblSuma.Text = "Suma";
+            this.lblSuma.Click += new System.EventHandler(this.lblSuma_Click);
             // 
             // KorisniciAdmin
             // 

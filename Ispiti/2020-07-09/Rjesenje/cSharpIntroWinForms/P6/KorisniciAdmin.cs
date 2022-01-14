@@ -161,6 +161,11 @@ namespace cSharpIntroWinForms
         {
             MetodaSumiranja();
         }
+
+        private void lblSuma_Click(object sender, EventArgs e)
+        {
+
+        }
         //----------------------
 
     }
