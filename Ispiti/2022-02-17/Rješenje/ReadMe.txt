@@ -1,0 +1,1 @@
+Uraditi rebuild solution-a prije pokretanja.
