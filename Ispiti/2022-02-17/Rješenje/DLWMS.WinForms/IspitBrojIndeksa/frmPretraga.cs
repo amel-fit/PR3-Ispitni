@@ -28,7 +28,8 @@ namespace DLWMS.WinForms.IspitBrojIndeksa
         {
             _filter = string.IsNullOrEmpty(txtImePrezime.Text) ? "" : txtImePrezime.Text;
             _godina = string.IsNullOrEmpty(cmbGodinaStudija.Text) ? 0 : int.Parse(cmbGodinaStudija.SelectedItem.ToString());
-            _studenti = _db.Studenti.Where(s => s.GodinaStudija == _godina && (s.Ime.Contains(_filter) || s.Prezime.Contains(_filter) || _filter == "")).ToList();
+            _studenti = _db.Studenti.Where(s => s.GodinaStudija == _godina && 
+            (s.Ime.ToLower().Contains(_filter.ToLower()) || s.Prezime.ToLower().Contains(_filter.ToLower()) || _filter == "")).ToList();
             if (_studenti != null)
             {
                 DataTable tblstudenti = new DataTable();
@@ -37,24 +38,13 @@ namespace DLWMS.WinForms.IspitBrojIndeksa
                 tblstudenti.Columns.Add("ProsjecnaOcjena");
                 for (int i = 0; i < _studenti.Count(); i++)
                 {
-                    DataRow student = tblstudenti.NewRow();
-                    List<StudentPredmet> studentiPredmeti = _db.StudentiPredmeti.ToList();
-                    double suma = 0;
-                    double brojac = 0;
-                    double prosjek = 0;
-                    for (int j = 0; j < studentiPredmeti.Count(); j++)
-                    {
-                        if (_studenti[i] == studentiPredmeti[j].Student)
-                        {
-                            suma += studentiPredmeti[j].Ocjena;
-                            brojac++;
-                            prosjek = suma / brojac;
-                        }
-                    }
-                    student["ImePrezime"] = _studenti[i];
-                    student["GodinaStudija"] = _studenti[i].GodinaStudija;
-                    student["ProsjecnaOcjena"] = (prosjek == 0) ? 5 : prosjek;
-                    tblstudenti.Rows.Add(student);
+                    var student = _studenti[i];
+                    List<StudentPredmet> studentiPredmeti = _db.StudentiPredmeti.Where(x => x.Student.Id == student.Id).ToList();              
+                    DataRow red = tblstudenti.NewRow();
+                    red["ImePrezime"] = student;
+                    red["GodinaStudija"] = student.GodinaStudija;
+                    red["ProsjecnaOcjena"] = studentiPredmeti.Count() == 0 ? 5 : studentiPredmeti.Average(x => x.Ocjena);
+                    tblstudenti.Rows.Add(red);
                 }
                 dgvStudenti.DataSource = null;
                 dgvStudenti.DataSource = tblstudenti;
