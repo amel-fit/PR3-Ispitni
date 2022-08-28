@@ -33,13 +33,13 @@ namespace DLWMS.WinForms.IspitBrojIndeksa
                 rpc.Add(rp1);
                 rpc.Add(rp2);
                 var tblKonsultacije = new dsKonsultacije.tblKonsultacijeDataTable();
-                foreach (var k in _konsultacije)
+                for (int i = 0; i < _konsultacije.Count(); i++)
                 {
                     var red = tblKonsultacije.NewtblKonsultacijeRow();
-                    red.Rb = k.Id.ToString();
-                    red.Predmet = k.Predmet.ToString();
-                    red.Vrijeme = k.VrijemeOdrzavanja.ToString();
-                    red.Napomena = k.Napomena.ToString();
+                    red.Rb = (i + 1).ToString();
+                    red.Predmet = _konsultacije[i].Predmet.ToString();
+                    red.Vrijeme = _konsultacije[i].VrijemeOdrzavanja.ToString();
+                    red.Napomena = _konsultacije[i].Napomena.ToString();
                     tblKonsultacije.AddtblKonsultacijeRow(red);
                 }
                 ReportDataSource rds = new ReportDataSource();
