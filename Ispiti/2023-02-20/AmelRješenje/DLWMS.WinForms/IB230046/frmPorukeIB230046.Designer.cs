@@ -84,6 +84,7 @@
             dgvPoruke.RowTemplate.Height = 29;
             dgvPoruke.Size = new Size(921, 218);
             dgvPoruke.TabIndex = 2;
+            dgvPoruke.CellClick += dgvPoruke_CellClick;
             // 
             // Predmet
             // 

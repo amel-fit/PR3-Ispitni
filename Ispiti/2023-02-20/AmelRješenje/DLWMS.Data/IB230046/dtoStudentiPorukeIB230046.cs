@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -17,17 +18,19 @@ namespace DLWMS.Data.IB230046
          * Validnost
          * [Brisi]
         */
+        public int Id { get; set; }
         public string NazivPredmeta {  get; set; }
         public string Sadrzaj { get; set; }
         public Image Slika { get; set; }
         public DateTime Validnost { get; set; }
 
-        public dtoStudentiPorukeIB230046(PredmetIB230046 p, string sadrzaj, byte[] slika, DateTime validnost)
+        public dtoStudentiPorukeIB230046(StudentiPorukeIB230046 sp)
         {
-            NazivPredmeta = p.Naziv;
-            Sadrzaj = sadrzaj;
-            Slika = Image.FromStream(new MemoryStream(slika));
-            Validnost = validnost;
+            Id = sp.Id;
+            NazivPredmeta = sp.Predmet.Naziv;
+            Sadrzaj = sp.Sadrzaj;
+            Slika = Image.FromStream(new MemoryStream(sp.Slika));
+            Validnost = sp.Validnost;
         }
 
     }

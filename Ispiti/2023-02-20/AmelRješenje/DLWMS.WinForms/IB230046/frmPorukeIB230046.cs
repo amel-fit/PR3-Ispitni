@@ -42,15 +42,15 @@ namespace DLWMS.WinForms.IB230046
             var lstSP = db.studentiPorukeIB230046.Where(sp => sp.StudentId == student.Id).ToList();
             foreach (var sp in lstSP)
             {
-                if (sp.Validnost < DateTime.Now) 
+                if (sp.Validnost < DateTime.Now)
                     continue;
-                var dtoSP = new dtoStudentiPorukeIB230046(sp.Predmet, sp.Sadrzaj, sp.Slika, sp.Validnost);
+                var dtoSP = new dtoStudentiPorukeIB230046(sp);
                 lstStudentiPoruke.Add(dtoSP);
             }
             return lstStudentiPoruke;
         }
 
-        
+
 
         private async void btnDodaj_Click(object sender, EventArgs e)
         {
@@ -89,9 +89,23 @@ namespace DLWMS.WinForms.IB230046
 
         private bool ValidniUnosi()
         {
-            return  Validator.ValidirajKontrolu(txtBrojPoruka, err, Kljucevi.ObaveznaVrijednost) &&
+            return Validator.ValidirajKontrolu(txtBrojPoruka, err, Kljucevi.ObaveznaVrijednost) &&
                     Validator.ValidirajKontrolu(cbPredmet, err, Kljucevi.PodaciNisuValidni) &&
                     Validator.ValidirajKontrolu(dtpValidnost, err, Kljucevi.PodaciNisuValidni);
+        }
+
+        private void dgvPoruke_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.ColumnIndex == dgvPoruke.Columns["Brisi"].Index)
+            {
+                //Brisi kliknuto
+                var DTORowObject = dgvPoruke.Rows[e.RowIndex].DataBoundItem as dtoStudentiPorukeIB230046;
+                StudentiPorukeIB230046 toRemove = db.studentiPorukeIB230046.FirstOrDefault(sp => sp.Id == DTORowObject.Id);
+                //db.studentiPorukeIB230046.ExecuteDelete()
+                db.studentiPorukeIB230046.Remove(toRemove);
+                db.SaveChanges();
+                UcitajPoruke(GetDTOPoruke());
+            }
         }
 
         private void UcitajPoruke<T>(IEnumerable<T> source)
