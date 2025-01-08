@@ -28,7 +28,8 @@ namespace DLWMS.WinForms
 
         private void btnIzvjestaj_Click(object sender, EventArgs e)
         {
-            new frmIzvjestaji().Show();
+            throw new NotImplementedException();
+            //new frmIzvjestaji().Show();
         }
     }
 }

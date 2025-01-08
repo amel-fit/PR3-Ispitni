@@ -1,6 +1,7 @@
 ﻿using DLWMS.Data;
 using DLWMS.Data.IB230046;
 using DLWMS.WinForms.Helpers;
+using DLWMS.WinForms.Izvjestaji;
 using Microsoft.CodeAnalysis.VisualBasic.Syntax;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -114,6 +115,11 @@ namespace DLWMS.WinForms.IB230046
             if (result == DialogResult.OK)
                 UcitajPoruke(GetDTOPoruke());
 
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            new frmIzvjestaji(student, GetDTOPoruke()).Show();
         }
 
         private void UcitajPoruke<T>(IEnumerable<T> source)

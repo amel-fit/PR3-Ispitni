@@ -32,11 +32,6 @@
             lblImeStudenta = new Label();
             btnNovaPoruka = new Button();
             dgvPoruke = new DataGridView();
-            Predmet = new DataGridViewTextBoxColumn();
-            Sadrzaj = new DataGridViewTextBoxColumn();
-            Slika = new DataGridViewImageColumn();
-            Validnost = new DataGridViewTextBoxColumn();
-            Brisi = new DataGridViewButtonColumn();
             gbDodavanje = new GroupBox();
             btnDodaj = new Button();
             rtInfo = new RichTextBox();
@@ -48,6 +43,12 @@
             lblInfo = new Label();
             lblBrojPoruka = new Label();
             err = new ErrorProvider(components);
+            btnPrint = new Button();
+            Predmet = new DataGridViewTextBoxColumn();
+            Sadrzaj = new DataGridViewTextBoxColumn();
+            Slika = new DataGridViewImageColumn();
+            Validnost = new DataGridViewTextBoxColumn();
+            Brisi = new DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)dgvPoruke).BeginInit();
             gbDodavanje.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)err).BeginInit();
@@ -87,52 +88,6 @@
             dgvPoruke.TabIndex = 2;
             dgvPoruke.CellClick += dgvPoruke_CellClick;
             // 
-            // Predmet
-            // 
-            Predmet.DataPropertyName = "NazivPredmeta";
-            Predmet.HeaderText = "Predmet";
-            Predmet.MinimumWidth = 6;
-            Predmet.Name = "Predmet";
-            Predmet.ReadOnly = true;
-            Predmet.Width = 125;
-            // 
-            // Sadrzaj
-            // 
-            Sadrzaj.DataPropertyName = "Sadrzaj";
-            Sadrzaj.HeaderText = "Sadržaj";
-            Sadrzaj.MinimumWidth = 6;
-            Sadrzaj.Name = "Sadrzaj";
-            Sadrzaj.ReadOnly = true;
-            Sadrzaj.Width = 125;
-            // 
-            // Slika
-            // 
-            Slika.DataPropertyName = "Slika";
-            Slika.HeaderText = "Slika";
-            Slika.MinimumWidth = 6;
-            Slika.Name = "Slika";
-            Slika.ReadOnly = true;
-            Slika.Width = 125;
-            // 
-            // Validnost
-            // 
-            Validnost.DataPropertyName = "Validnost";
-            Validnost.HeaderText = "Validnost";
-            Validnost.MinimumWidth = 6;
-            Validnost.Name = "Validnost";
-            Validnost.ReadOnly = true;
-            Validnost.Width = 125;
-            // 
-            // Brisi
-            // 
-            Brisi.HeaderText = "";
-            Brisi.MinimumWidth = 6;
-            Brisi.Name = "Brisi";
-            Brisi.ReadOnly = true;
-            Brisi.Text = "Brisi";
-            Brisi.UseColumnTextForButtonValue = true;
-            Brisi.Width = 125;
-            // 
             // gbDodavanje
             // 
             gbDodavanje.Controls.Add(btnDodaj);
@@ -144,7 +99,7 @@
             gbDodavanje.Controls.Add(lblPredmet);
             gbDodavanje.Controls.Add(lblInfo);
             gbDodavanje.Controls.Add(lblBrojPoruka);
-            gbDodavanje.Location = new Point(12, 294);
+            gbDodavanje.Location = new Point(12, 315);
             gbDodavanje.Name = "gbDodavanje";
             gbDodavanje.Size = new Size(921, 272);
             gbDodavanje.TabIndex = 3;
@@ -233,11 +188,69 @@
             // 
             err.ContainerControl = this;
             // 
+            // btnPrint
+            // 
+            btnPrint.Location = new Point(833, 280);
+            btnPrint.Name = "btnPrint";
+            btnPrint.Size = new Size(94, 29);
+            btnPrint.TabIndex = 4;
+            btnPrint.Text = "Printaj";
+            btnPrint.UseVisualStyleBackColor = true;
+            btnPrint.Click += btnPrint_Click;
+            // 
+            // Predmet
+            // 
+            Predmet.DataPropertyName = "NazivPredmeta";
+            Predmet.HeaderText = "Predmet";
+            Predmet.MinimumWidth = 6;
+            Predmet.Name = "Predmet";
+            Predmet.ReadOnly = true;
+            Predmet.Width = 125;
+            // 
+            // Sadrzaj
+            // 
+            Sadrzaj.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Sadrzaj.DataPropertyName = "Sadrzaj";
+            Sadrzaj.HeaderText = "Sadržaj";
+            Sadrzaj.MinimumWidth = 6;
+            Sadrzaj.Name = "Sadrzaj";
+            Sadrzaj.ReadOnly = true;
+            // 
+            // Slika
+            // 
+            Slika.DataPropertyName = "Slika";
+            Slika.HeaderText = "Slika";
+            Slika.MinimumWidth = 6;
+            Slika.Name = "Slika";
+            Slika.ReadOnly = true;
+            Slika.Width = 125;
+            // 
+            // Validnost
+            // 
+            Validnost.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            Validnost.DataPropertyName = "Validnost";
+            Validnost.HeaderText = "Validnost";
+            Validnost.MinimumWidth = 6;
+            Validnost.Name = "Validnost";
+            Validnost.ReadOnly = true;
+            Validnost.Width = 99;
+            // 
+            // Brisi
+            // 
+            Brisi.HeaderText = "";
+            Brisi.MinimumWidth = 6;
+            Brisi.Name = "Brisi";
+            Brisi.ReadOnly = true;
+            Brisi.Text = "Brisi";
+            Brisi.UseColumnTextForButtonValue = true;
+            Brisi.Width = 125;
+            // 
             // frmPorukeIB230046
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(945, 575);
+            ClientSize = new Size(945, 606);
+            Controls.Add(btnPrint);
             Controls.Add(gbDodavanje);
             Controls.Add(dgvPoruke);
             Controls.Add(btnNovaPoruka);
@@ -268,6 +281,7 @@
         private Label lblBrojPoruka;
         private Button btnDodaj;
         private ErrorProvider err;
+        private Button btnPrint;
         private DataGridViewTextBoxColumn Predmet;
         private DataGridViewTextBoxColumn Sadrzaj;
         private DataGridViewImageColumn Slika;
