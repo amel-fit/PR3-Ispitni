@@ -96,7 +96,7 @@ namespace DLWMS.WinForms.IB230046
 
         private void dgvPoruke_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.ColumnIndex == dgvPoruke.Columns["Brisi"].Index)
+            if (e.ColumnIndex == dgvPoruke.Columns["Brisi"].Index)
             {
                 //Brisi kliknuto
                 var DTORowObject = dgvPoruke.Rows[e.RowIndex].DataBoundItem as dtoStudentiPorukeIB230046;
@@ -106,6 +106,14 @@ namespace DLWMS.WinForms.IB230046
                 db.SaveChanges();
                 UcitajPoruke(GetDTOPoruke());
             }
+        }
+
+        private void btnNovaPoruka_Click(object sender, EventArgs e)
+        {
+            var result = new frmNovaPorukaIB230046(student).ShowDialog();
+            if (result == DialogResult.OK)
+                UcitajPoruke(GetDTOPoruke());
+
         }
 
         private void UcitajPoruke<T>(IEnumerable<T> source)

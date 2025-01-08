@@ -7,7 +7,7 @@ namespace DLWMS.WinForms.Helpers
         public static bool ValidirajKontrolu(Control kontrola, ErrorProvider err, string kljuc)
         {
             var valid = true;
-            if(kontrola is TextBox  && string.IsNullOrWhiteSpace(kontrola.Text))
+            if((kontrola is TextBox || kontrola is RichTextBox)  && string.IsNullOrWhiteSpace(kontrola.Text))
                 valid = false;
             else if (kontrola is ComboBox && (kontrola as ComboBox).SelectedIndex < 0)
                 valid = false;

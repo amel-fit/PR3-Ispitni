@@ -70,6 +70,7 @@
             btnNovaPoruka.TabIndex = 1;
             btnNovaPoruka.Text = "Nova Poruka";
             btnNovaPoruka.UseVisualStyleBackColor = true;
+            btnNovaPoruka.Click += btnNovaPoruka_Click;
             // 
             // dgvPoruke
             // 
