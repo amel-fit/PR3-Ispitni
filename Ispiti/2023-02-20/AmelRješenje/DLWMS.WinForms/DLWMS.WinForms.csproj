@@ -30,6 +30,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>dsDLWMS.xsd</DependentUpon>
     </Compile>
+    <Compile Update="Izvjestaji\IB230046\dsPoruke.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>dsPoruke.xsd</DependentUpon>
+    </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -60,6 +65,10 @@
     <None Update="Izvjestaji\dsDLWMS.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>dsDLWMS.Designer.cs</LastGenOutput>
+    </None>
+    <None Update="Izvjestaji\IB230046\dsPoruke.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsPoruke.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
 
