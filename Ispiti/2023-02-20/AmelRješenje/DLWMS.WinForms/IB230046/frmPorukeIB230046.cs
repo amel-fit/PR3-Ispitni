@@ -1,6 +1,7 @@
 ﻿using DLWMS.Data;
 using DLWMS.Data.IB230046;
 using DLWMS.WinForms.Helpers;
+using Microsoft.CodeAnalysis.VisualBasic.Syntax;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -51,7 +52,7 @@ namespace DLWMS.WinForms.IB230046
 
         
 
-        private void btnDodaj_Click(object sender, EventArgs e)
+        private async void btnDodaj_Click(object sender, EventArgs e)
         {
             if (!ValidniUnosi()) return;
             if (int.Parse(txtBrojPoruka.Text) < 1) return;
@@ -59,24 +60,28 @@ namespace DLWMS.WinForms.IB230046
             int brojPoruka = db.studentiPorukeIB230046.Count();
             int brojPorukaZaGenerisati = int.Parse(txtBrojPoruka.Text);
 
-            for (int i = 0; i < brojPorukaZaGenerisati; i++)
+            await Task.Run(() =>
             {
-                StudentiPorukeIB230046 sp = new();
-            
-                sp.PredmetId = (cbPredmet.SelectedItem as PredmetIB230046).Id;
-                sp.StudentId = student.Id;
-            
-                var img = Image.FromFile("../../../Resources/Slicica.png");
-                sp.Slika = ImageHelper.FromImageToByte(img);
+                for (int i = 0; i < brojPorukaZaGenerisati; i++)
+                {
+                    StudentiPorukeIB230046 sp = new();
+                    var SelectedPredmet = cbPredmet.Invoke(()
+                        => cbPredmet.SelectedItem as PredmetIB230046);
+                    sp.PredmetId = SelectedPredmet.Id;
+                    sp.StudentId = student.Id;
 
-                sp.Sadrzaj = $"{brojPoruka + i + 1}. Generisana poruka ";
+                    var img = Image.FromFile("../../../Resources/Slicica.png");
+                    sp.Slika = ImageHelper.FromImageToByte(img);
 
-                sp.Validnost = dtpValidnost.Value;
+                    sp.Sadrzaj = $"{brojPoruka + i + 1}. Generisana poruka ";
 
-                string info = $"{DateTime.Now} -> Generisana poruka za {student.Ime} {student.Prezime} na predmetu {cbPredmet.Text}\n";
-                rtInfo.AppendText(info);
-                db.studentiPorukeIB230046.Add(sp);
-            }
+                    sp.Validnost = dtpValidnost.Value;
+
+                    string info = $"{DateTime.Now} -> Generisana poruka za {student.Ime} {student.Prezime} na predmetu {SelectedPredmet.Naziv}\n";
+                    rtInfo.Invoke(() => rtInfo.AppendText(info));
+                    db.studentiPorukeIB230046.Add(sp);
+                }
+            });
 
             db.SaveChanges();
             UcitajPoruke(GetDTOPoruke());
