@@ -29,7 +29,7 @@ namespace DLWMS.WinForms
 
         private void btnIzvjestaj_Click(object sender, EventArgs e)
         {
-            new frmIzvjestaji(new ReportParameterCollection()).Show();
+            new frmIzvjestaji().Show();
         }
     }
 }
