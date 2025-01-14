@@ -5,9 +5,11 @@ namespace DLWMS.WinForms.Izvjestaji
 {
     public partial class frmIzvjestaji : Form
     {
-        public frmIzvjestaji()
+        public frmIzvjestaji(ReportParameterCollection parameters)
         {
             InitializeComponent();
+            reportViewer1.LocalReport.SetParameters(parameters);
+            
         }
 
         public frmIzvjestaji(ReportParameterCollection parameters) : this()
