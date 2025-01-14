@@ -1,6 +1,8 @@
 ﻿using DLWMS.Data;
 using DLWMS.Data.IB230046;
 using DLWMS.WinForms.Helpers;
+using DLWMS.WinForms.Izvjestaji;
+using Microsoft.Reporting.WinForms;
 using System.Data;
 
 namespace DLWMS.WinForms.IB230046
@@ -97,9 +99,25 @@ namespace DLWMS.WinForms.IB230046
                 //Printaj
                 //MessageBox.Show("Printaj");
                 var uvjerenje = dgvUvjerenja.Rows[e.RowIndex].DataBoundItem as StudentiUvjerenjaIB230046;
-                uvjerenje.Printano = true;
+                DialogResult dialogResult = LoadIzvjestaj(uvjerenje);
+                    uvjerenje.Printano = true;
             }
             SetSource();
+        }
+
+        private DialogResult LoadIzvjestaj(StudentiUvjerenjaIB230046 uvjerenje)
+        {
+            var Parametri = new ReportParameterCollection();
+            string strStudent = $"{Student.Ime} {Student.Prezime} ({Student.BrojIndeksa})";
+            var pStudent = new ReportParameter("pStudent", strStudent);
+            var pSvrha = new ReportParameter("pSvrha", uvjerenje.Svrha);
+            var pUvjerenje = new ReportParameter("pUvjerenje", uvjerenje.Vrsta);
+            var pDatum = new ReportParameter("pDatum", DateTime.Now.ToString());
+            Parametri.Add(pStudent);
+            Parametri.Add(pSvrha);
+            Parametri.Add(pDatum);
+            Parametri.Add(pUvjerenje);
+            return new frmIzvjestaji(Parametri).ShowDialog();
         }
 
         private void btnNoviZahtjev_Click(object sender, EventArgs e)

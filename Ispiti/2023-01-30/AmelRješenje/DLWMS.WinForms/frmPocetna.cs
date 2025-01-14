@@ -1,5 +1,6 @@
 ﻿using DLWMS.Data;
 using DLWMS.WinForms.Izvjestaji;
+using Microsoft.Reporting.WinForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,7 +29,7 @@ namespace DLWMS.WinForms
 
         private void btnIzvjestaj_Click(object sender, EventArgs e)
         {
-            new frmIzvjestaji().Show();
+            new frmIzvjestaji(new ReportParameterCollection()).Show();
         }
     }
 }
