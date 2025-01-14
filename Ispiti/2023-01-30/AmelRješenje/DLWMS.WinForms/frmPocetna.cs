@@ -1,5 +1,6 @@
 ﻿using DLWMS.Data;
 using DLWMS.WinForms.Izvjestaji;
+using Microsoft.Reporting.WinForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
