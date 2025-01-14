@@ -12,7 +12,8 @@ namespace DLWMS.WinForms.Izvjestaji
 
         public frmIzvjestaji(ReportParameterCollection parameters) : this()
         {
-            reportViewer1.LocalReport.SetParameters(parameters);   
+            reportViewer1.LocalReport.SetParameters(parameters); 
+            
         }
         private void frmIzvjestaji_Load(object sender, EventArgs e)
         {
