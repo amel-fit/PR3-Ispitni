@@ -1,10 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using DLWMS.Data.IB230046;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Drawing;
 using System.Reflection.Emit;
 using System.Reflection.Metadata.Ecma335;
 
 namespace DLWMS.Data
 {
+    [Table("Studenti")]
     public class Student
     {
         public int Id { get; set; }
@@ -17,11 +19,15 @@ namespace DLWMS.Data
         public int GodinaStudija { get; set; }
         public byte[] Slika { get; set; }
         public bool Aktivan { get; set; }
-        public Spol Spol { get; set; }       
+        public int SpolId { get; set; }
 
         public override string ToString()
         {
             return $"({BrojIndeksa}) - {Ime} {Prezime}";
         }
+
+        public virtual Spol Spol { get; set; }       
+        public virtual List<StudentiPredmeti> StudentiPredmeti { get; set; }
+        public virtual List<StudentiUvjerenjaIB230046> StudentiUvjerenjaIB230046 { get; set; }
     }  
 }

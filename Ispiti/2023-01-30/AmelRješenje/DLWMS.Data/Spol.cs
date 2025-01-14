@@ -8,6 +8,8 @@ namespace DLWMS.Data
     {
         public int Id { get; set; }
         public string Naziv { get; set; }
+
+        public virtual List<Student> Studenti { get; set; }
     }
 
 }
