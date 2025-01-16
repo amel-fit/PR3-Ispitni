@@ -58,6 +58,7 @@ namespace FIT.WinForms._2202IB230046
             }else if(e.ColumnIndex == btnPrisustvo.Index)
             {
                 //Prisustvo Button
+                new frmPrisustvoIB230046(dgvProstorije.Rows[e.RowIndex].DataBoundItem as Prostorija).Show();
             }
         }
     }

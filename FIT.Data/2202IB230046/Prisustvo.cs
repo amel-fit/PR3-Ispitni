@@ -16,5 +16,10 @@ namespace FIT.Data._2202IB230046
 
         public virtual Student Student { get; set; }
         public virtual Nastava Nastava { get; set; }
+
+        [NotMapped]
+        public string StudentTXT { get; set; }
+        [NotMapped]
+        public string OznakaTXT { get; set; }
     }
 }

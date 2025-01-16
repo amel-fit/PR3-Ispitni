@@ -19,6 +19,7 @@ namespace FIT.WinForms._2202IB230046
     {
         public Prostorija prostorija { get; set; }
         public DLWMSDbContext dbContext = new();
+        
         public frmNastavaIB230046()
         {
             InitializeComponent();
@@ -74,7 +75,7 @@ namespace FIT.WinForms._2202IB230046
                 PredmetId = cmbPredmet.SelectedIndex + 1,
                 VrijemeOdrzavanja = cmbVrijeme.Text,
                 Dan = cmbDan.Text,
-                Oznaka = $"{cmbPredmet}::{cmbDan.Text} :: {cmbVrijeme.Text}"
+                Oznaka = $"{cmbPredmet.Text}::{cmbDan.Text} :: {cmbVrijeme.Text}"
             });
             dbContext.SaveChanges();
             SetSource();

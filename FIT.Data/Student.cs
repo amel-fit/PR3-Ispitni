@@ -1,4 +1,6 @@
 ﻿using FIT.Data._2202IB230046;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Drawing;
 
 namespace FIT.Data
@@ -21,5 +23,8 @@ namespace FIT.Data
         }
 
         public virtual List<Prisustvo> Prisustva { get; set; }
+
+        [NotMapped]
+        public string StudentTXT { get; set; }
     }
 }
