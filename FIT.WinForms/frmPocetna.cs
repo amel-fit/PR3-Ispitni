@@ -1,4 +1,5 @@
 ﻿using FIT.Infrastructure;
+using FIT.WinForms._2202IB230046;
 using FIT.WinForms.Izvjestaji;
 
 using System;
@@ -29,6 +30,12 @@ namespace FIT.WinForms
         private void btnIzvjestaj_Click(object sender, EventArgs e)
         {
             new frmIzvjestaji().Show();
+        }
+
+        private void btnIspit_Click(object sender, EventArgs e)
+        {
+            new frmProstorijeIB230046().Show();
+            this.Hide();
         }
     }
 }

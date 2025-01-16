@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using FIT.Data._2202IB230046;
+using System.Drawing;
 
 namespace FIT.Data
 {
@@ -18,5 +19,7 @@ namespace FIT.Data
         {
             return $"{Indeks} {Ime} {Prezime}";
         }
+
+        public virtual List<Prisustvo> Prisustva { get; set; }
     }
 }
